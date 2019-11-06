@@ -1,43 +1,54 @@
 import csv
 from pymongo import MongoClient
-from pprint import pprint
+#from pprint import pprint
+import pprint
 import os
-def CsvToDict(pathArquivo,NomeBoia):
+from copy import deepcopy
+
+class Boia:
+    def __init__(self):
+        self.Boia = deepcopy({
+        'Name':"",
+        'Data':[ ],
+            })
     
+    
+class Data:
+    def __init__(self):
+        self.dat = deepcopy({
+            'Dado' : {
+                '# Epoca':'',
+                'Date':{'Year':'', 'Month':'','Day':'', 'Hour':'','Minute':''}, 
+                'Location':{'Lat':'', 'Lon':''},
+                'Wspd':'',
+                'Wspdflag':'',
+                'Wdir': '',
+                'Gust':'',
+                'Atmp':'',  
+                'Pres':'',
+                'Dewp':'',
+                'Humi':'',
+                'Arad':'',
+                'Wtmp':'',
+                'Wvht':'',
+                'Wmax':'',
+                'Dpd':'',
+                'Mwd':'',
+                'Spred':''
+                }
+            })
+   
 
 
+
+
+def CsvToDict(pathArquivo,NomeBoia):
     arquivo = open(pathArquivo)
 
     dados = csv.DictReader(arquivo)
 
+
     #i=0
-    Boia = {'Name':"",
-            'Data':[ ],
-    }
-
-
-    Date = {'Year':'', 'Month':'','Day':'', 'Hour':'','Minute':''}
-    Location = {'Lat':'', 'Lon':''}
-
-    Dado = { '# Epoca':'',
-            'Date':{}, 
-            'Location':{},
-            'Wspd':'',
-            'Wspdflag':'',
-            'Wdir': '',
-            'Gust':'',
-            'Atmp':'',  
-            'Pres':'',
-            'Dewp':'',
-            'Humi':'',
-            'Arad':'',
-            'Wtmp':'',
-            'Wvht':'',
-            'Wmax':'',
-            'Dpd':'',
-            'Mwd':'',
-            'Spred':''
-            }
 
             #  Dado = { '# Epoca':'',
             # 'Date':{}, 
@@ -66,38 +77,44 @@ def CsvToDict(pathArquivo,NomeBoia):
             # 'Mwd':'',
             # 'Spred':''
             # }
-    Dado = {}
+
     NomeDosDados = ['# Epoca','Wspd','Wspdflag','Wdir','Gust','Atmp', 
                     'Pres','Dewp','Humi','Arad','Wtmp','Wvht','Wmax','Dpd','Mwd','Spred']
     #transformar o csv em dict
-    for d in dados:            
+
+    #instaciar uma nova boia
+    Doc = Boia()
+    Doc.Boia['Name'] = NomeBoia
+    for d in dados:
+        tupla = Data()
+                     
         #Pegar a Data
-        if(d['Year'] != '2016' ):
+        if(d['Year'].replace('.0','') != '2016' ):
             continue
-        Date['Year'] = d['Year']
-        Date['Month'] = d['Month']
-        Date['Day'] = d['Day']
-        Date['Hour'] = d['Hour']
-        Date['Minute'] = d['Minute']
-        Dado['Date'] = Date
+        tupla.dat['Dado']['Date']['Year'] = d['Year'].replace('.0','')
+        tupla.dat['Dado']['Date']['Month'] = d['Month'].replace('.0','')
+        tupla.dat['Dado']['Date']['Day'] = d['Day'].replace('.0','')
+        tupla.dat['Dado']['Date']['Hour'] = d['Hour'].replace('.0','')
+        tupla.dat['Dado']['Date']['Minute'] = d['Minute'].replace('.0','')
+        
         #Pegar localizacao Lat':'', 'Lon'
-        Location['Lat'] = d['Lat']
-        Location['Lon'] = d['Lon']
-        Dado['Location'] = Location
+
+        tupla.dat['Dado']['Location']['Lat'] = d['Lat']
+        tupla.dat['Dado']['Location']['Lon'] = d['Lon']
+     
         #outros dados
         for s in NomeDosDados:
-            Dado[s] = d[s]
+            tupla.dat['Dado'][s] = d[s]
 
-        Boia['Data'].append(Dado)
-        #print(Dado)
-       # print('-----------------------------------------------------')
-        # i+=1
-        # if(i>3):
-        #     break
-    #print(Boia)
-    Boia['Name'] = NomeBoia
+        Doc.Boia['Data'].append(deepcopy(tupla.dat))
+        
+   
+ #   pprint.pprint(Doc.Boia)
     print(NomeBoia + " - Completo")
-    return AdicionarBoiaBanco(Boia)
+    logFile=open('log' + '-'+ NomeBoia + '.txt', 'w')
+    pprint.pprint(Doc.Boia, logFile)
+    #return True
+    return AdicionarBoiaBanco(deepcopy(Doc.Boia))
     #enviar o dict para o banco
 
 def AdicionarBoiaBanco(obj):
@@ -107,11 +124,11 @@ def AdicionarBoiaBanco(obj):
   #  serverStatusResult=db.command("serverStatus")
     #pprint(serverStatusResult)
     db=client.Brwindy
-    if(db.Posts2.find({'Nome':obj['Name']}).count() == 1 ):
+    if(db.PostsTest.find({'Nome':obj['Name']}).count() == 1 ):
         return False
-    result=db.Posts2.insert_one(obj)
-    pprint(result)
-
+    result=db.PostsTest.insert_one(obj)
+    #pprint.pprint(result)
+    return result
 
 
 
@@ -128,3 +145,5 @@ def AdicionarBoiasPasta(path):
             print("Error Na boia " + nome )
 
 AdicionarBoiasPasta(path="../DadosOriginais/Dados - Boias - Marinha - Qualificados - 2018-05-07")
+
+#CsvToDict(  pathArquivo="../DadosOriginais/Dados - Boias - Marinha - Qualificados - 2018-05-07/fortaleza.csv",  NomeBoia = 'fortaleza' )
