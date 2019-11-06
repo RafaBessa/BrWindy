@@ -20,6 +20,7 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="./main.css" rel="stylesheet"></head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -670,7 +671,8 @@
                             <div class="page-title-wrapper">
                                 <div class="page-title-heading">
                                     <div class="page-title-icon">
-                                        <i class="pe-7s-car icon-gradient bg-mean-fruit">
+                                        <!-- <i class="pe-7s-car icon-gradient bg-mean-fruit"> -->
+                                            <i class="pe-7s-world icon-gradient bg-mean-fruit"> </i>
                                         </i>
                                     </div>
                                     <div>BRWindy
@@ -738,7 +740,7 @@
                                             <div class="widget-subheading">Registradas</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>1896</span></div>
+                                            <div class="widget-numbers text-white"><span id="num_boias">[NUM_BOIAS]</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -747,11 +749,11 @@
                                 <div class="card mb-3 widget-content bg-arielle-smile">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
-                                            <div class="widget-heading">Clients</div>
-                                            <div class="widget-subheading">Total Clients Profit</div>
+                                            <div class="widget-heading">Missing Wind Data</div>
+                                            <div class="widget-subheading">Dados faltantes</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>$ 568</span></div>
+                                            <div class="widget-numbers text-white"><span>[NUM_MWD]</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -760,36 +762,24 @@
                                 <div class="card mb-3 widget-content bg-grow-early">
                                     <div class="widget-content-wrapper text-white">
                                         <div class="widget-content-left">
-                                            <div class="widget-heading">Followers</div>
-                                            <div class="widget-subheading">People Interested</div>
+                                            <div class="widget-heading">Última atualização</div>
+                                            <div class="widget-subheading">Última atualização</div>
                                         </div>
                                         <div class="widget-content-right">
-                                            <div class="widget-numbers text-white"><span>46%</span></div>
+                                            <div class="widget-numbers text-white"><span>[LAST_DATE]</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-                                <div class="card mb-3 widget-content bg-premium-dark">
-                                    <div class="widget-content-wrapper text-white">
-                                        <div class="widget-content-left">
-                                            <div class="widget-heading">Products Sold</div>
-                                            <div class="widget-subheading">Revenue streams</div>
-                                        </div>
-                                        <div class="widget-content-right">
-                                            <div class="widget-numbers text-warning"><span>$14M</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                         <div class="row">
-                            <div class="col-md-12 col-lg-12">
+                            <div class="col-md-8 col-lg-8">
                                 <div class="mb-3 card">
                                     <div class="card-header-tab card-header">
                                         <div class="card-header-title">
                                             <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                            Bandwidth Reports
+                                            Database values
                                         </div>
                                         <div class="btn-actions-pane-right">
                                             <div class="nav">
@@ -839,15 +829,80 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-4 col-lg-4">
+                                <div class="main-card mb-3 card">
+                                    <div class="card-header">Filtrar &nbsp;
+                                        <i class="pe-7s-search"> </i>
+                                    </div>
+                                    <div class="card-body">
+                                        <!-- <h5 class="card-title">Special Title Treatment</h5>
+                                        With supporting text below as a natural lead-in to additional content.
+                                        <button class="btn btn-warning">Go somewhere</button> -->
+                                        <input placeholder="Input to filter" type="text" class="mb-2 form-control">
+                                        <select class="mb-2 form-control">
+                                            <option selected disabled>Ano</option>
+                                            <option>2015</option>
+                                            <option>2016</option>
+                                            <option>2017</option>
+                                        </select>
+                                        <div class="position-relative form-group">
+                                            <label for="exampleCustomMutlipleSelect" class="">Bóias</label>
+                                            <select id="boia_multi_select" multiple="" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="custom-select">
+                                            
+                                            </select>
+                                        </div>
+                                        <div class="row col-md-12">
+                                            <div class="float-left">
+                                                Dados exibidos [Set_Value]/[Max_Value]
+                                            </div>
+                                            <div class="ml-3">
+                                                <i class="pe-7s-less"> </i>
+                                                <i class="pe-7s-plus"> </i>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3 progress bg-premium-dark">
+                                            <div class="progress-bar progress-bar-striped text-white" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="15" style="background-color: #f7b924; width: 20%;">                                                
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                            Executar DFA para: <br/>
+                                            <button class="mb-2 mr-2 btn btn-success">Todos</button>
+                                            <button class="mb-2 mr-2 btn btn-warning">Apenas Selecionados</button>
+                                        </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <!-- <div class="card-footer">Footer</div> -->
+                                </div>
+                                <div class="main-card mb-3 card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Cor da linha do gráfico</h5>
+                                        <select id="select_cor_boia" class="mb-2 form-control">
+                                            <option selected disabled>Bóia</option>
+                                        </select>
+                                        <div class="swatch-holder swatch-holder-lg bg-primary" id="TooltipC-0"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-secondary" id="TooltipC-1"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-success" id="TooltipC-2"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-info" id="TooltipC-3"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-warning" id="TooltipC-4"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-danger" id="TooltipC-5"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-focus" id="TooltipC-6"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-alternate" id="TooltipC-7"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-light" id="TooltipC-8"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-dark" id="TooltipC-9"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="row">
-                                <div class="col-md-12 col-lg-12">
+                                <div class="col-md-8 col-lg-8">
                                     <div class="mb-3 card">
                                         <div class="card-header-tab card-header">
                                             <div class="card-header-title">
                                                 <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                                                Bandwidth Reports
+                                                Post DFA Values
                                             </div>
                                             <div class="btn-actions-pane-right">
                                                 <div class="nav">
@@ -894,6 +949,78 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 col-lg-4">
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-header">Filtrar &nbsp;
+                                            <i class="pe-7s-search"> </i>
+                                        </div>
+                                        <div class="card-body">
+                                            <!-- <h5 class="card-title">Special Title Treatment</h5>
+                                            With supporting text below as a natural lead-in to additional content.
+                                            <button class="btn btn-warning">Go somewhere</button> -->
+                                            <input placeholder="Input to filter" type="text" class="mb-2 form-control">
+                                            <select class="mb-2 form-control">
+                                                <option selected disabled>Ano</option>
+                                                <option>2015</option>
+                                                <option>2016</option>
+                                                <option>2017</option>
+                                            </select>
+                                            <div class="position-relative form-group">
+                                                <label for="exampleCustomMutlipleSelect" class="">Bóias</label><select multiple="" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="custom-select">
+                                                <option>Bóia 1</option>
+                                                <option>Bóia 2</option>
+                                                <option>Bóia 3</option>
+                                                <option>Bóia 4</option>
+                                                <option>Bóia 5</option>
+                                            </select>
+                                            </div>
+                                            <div class="row col-md-12">
+                                                <div class="float-left">
+                                                    Dados exibidos [Set_Value]/[Max_Value]
+                                                </div>
+                                                <div class="ml-3">
+                                                    <i class="pe-7s-less"> </i>
+                                                    <i class="pe-7s-plus"> </i>
+                                                </div>
+                                            </div>
+                                            <div class="mb-3 progress bg-premium-dark">
+                                                <div class="progress-bar progress-bar-striped text-white" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="15" style="background-color: #f7b924; width: 20%;">                                                
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                Executar DFA para: <br/>
+                                                <button class="mb-2 mr-2 btn btn-success">Todos</button>
+                                                <button class="mb-2 mr-2 btn btn-warning">Apenas Selecionados</button>
+                                            </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <!-- <div class="card-footer">Footer</div> -->
+                                    </div>
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Cor da linha do gráfico</h5>
+                                            <select class="mb-2 form-control">
+                                                <option selected disabled>Bóia</option>
+                                                <option>BÓIA RN</option>
+                                                <option>BÓIA RS</option>
+                                                <option>BÓIA PE</option>
+                                                <option>BÓIA CE</option>
+                                            </select>
+                                            <div class="swatch-holder swatch-holder-lg bg-primary" id="TooltipC-0"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-secondary" id="TooltipC-1"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-success" id="TooltipC-2"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-info" id="TooltipC-3"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-warning" id="TooltipC-4"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-danger" id="TooltipC-5"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-focus" id="TooltipC-6"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-alternate" id="TooltipC-7"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-light" id="TooltipC-8"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-dark" id="TooltipC-9"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -947,10 +1074,96 @@
     <script>
         var lineChartData = {
         labels: ["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6", "Data 7", "Data 7", "Data 7", "Data 7", "Data 5", "Data 2", "Data 4", "Data 1", "Data 7"],
-        datasets: [{
-            data: [20, 90, 140, 25, 53, 67, 47, 98, 30, 80, 20, 40, 10, 60],
-            fill: false
-            }],
+        datasets: [
+            {
+                label: "BOIA RN",
+                data: [20, 90, 140, 25, 53, 67, 47, 98, 30, 80, 20, 40, 10, 60],
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(225,0,0,0.4)",
+                borderColor: "red", // The main line color
+                borderCapStyle: 'square',
+                borderDash: [], // try [5, 15] for instance
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "black",
+                pointBackgroundColor: "white",
+                pointBorderWidth: 1,
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: "yellow",
+                pointHoverBorderColor: "brown",
+                pointHoverBorderWidth: 2,
+                pointRadius: 4,
+                pointHitRadius: 10,
+                spanGaps: true,
+            },
+                {
+                    label: "BOIA RS",
+                    data: [29, 99, 149, 29, 59, 69, 49, 99, 39, 89, 29, 49, 19, 69],
+                    fill: false,
+                    lineTension: 0.1,
+                    backgroundColor: "rgba(225,0,0,0.4)",
+                    borderColor: "blue", // The main line color
+                    borderCapStyle: 'square',
+                    borderDash: [], // try [5, 15] for instance
+                    borderDashOffset: 0.0,
+                    borderJoinStyle: 'miter',
+                    pointBorderColor: "black",
+                    pointBackgroundColor: "white",
+                    pointBorderWidth: 1,
+                    pointHoverRadius: 8,
+                    pointHoverBackgroundColor: "yellow",
+                    pointHoverBorderColor: "brown",
+                    pointHoverBorderWidth: 2,
+                    pointRadius: 4,
+                    pointHitRadius: 10,
+                    spanGaps: true,
+                },
+                {
+                label: "BOIA PE",
+                data: [159, 266, 268, 275, 168, 268, 81, 255, 182, 93, 61, 232, 84, 204],
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(225,0,0,0.4)",
+                borderColor: "green", // The main line color
+                borderCapStyle: 'square',
+                borderDash: [], // try [5, 15] for instance
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "black",
+                pointBackgroundColor: "white",
+                pointBorderWidth: 1,
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: "yellow",
+                pointHoverBorderColor: "brown",
+                pointHoverBorderWidth: 2,
+                pointRadius: 4,
+                pointHitRadius: 10,
+                spanGaps: true,
+            },
+            {
+                label: "BOIA CE",
+                data: [49, 295, 139, 209, 28, 237, 53, 225, 275, 11, 106, 109, 277, 37],
+                fill: false,
+                lineTension: 0.1,
+                backgroundColor: "rgba(225,0,0,0.4)",
+                borderColor: "orange", // The main line color
+                borderCapStyle: 'square',
+                borderDash: [], // try [5, 15] for instance
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "black",
+                pointBackgroundColor: "white",
+                pointBorderWidth: 1,
+                pointHoverRadius: 8,
+                pointHoverBackgroundColor: "yellow",
+                pointHoverBorderColor: "brown",
+                pointHoverBorderWidth: 2,
+                pointRadius: 4,
+                pointHitRadius: 10,
+                spanGaps: true,
+            }
+            ],
         
         };
         // these are some defaults you can use for customizing your charts
@@ -989,6 +1202,35 @@
             }
         }
        
+        });
+
+    </script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: 'http://127.0.0.1:5002/BoiasAno',
+                success: function(response){
+                    var res = response;
+                    console.log(res);
+                }
+            });
+        });
+
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: 'http://127.0.0.1:5002/boiasNomes',
+                success: function(response){
+                    var res = response;
+                    console.log(res.length);
+                    $('#num_boias').text(res.length)
+                    for(var i = 0; i < res.length; i++){
+                        $('#boia_multi_select').append("<option>"+res[i]+"</option>")
+                        $('#select_cor_boia').append("<option>"+res[i]+"</option>")
+                    }
+                },
+            })
         });
 
     </script>
