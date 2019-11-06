@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e8c91900-1f99-46fc-a3d9-94172ef794e4" name="Default Changelist" comment="" />
+    <list default="true" id="e8c91900-1f99-46fc-a3d9-94172ef794e4" name="Default Changelist" comment="ajustes para interface&#10;implementação das chamadas ajax com endpoint existentes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python_rest/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/python_rest/server.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +76,21 @@
       <option name="presentableId" value="Default" />
       <updated>1572992802138</updated>
     </task>
+    <task id="LOCAL-00001" summary="ajustes para interface&#10;implementação das chamadas ajax com endpoint existentes">
+      <created>1573010536341</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1573010536342</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ajustes para interface&#10;implementação das chamadas ajax com endpoint existentes">
+      <created>1573010692276</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1573010692276</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -85,5 +103,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ajustes para interface&#10;implementação das chamadas ajax com endpoint existentes" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajustes para interface&#10;implementação das chamadas ajax com endpoint existentes" />
   </component>
 </project>

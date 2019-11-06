@@ -53,7 +53,7 @@ class BoiasNome(Resource):
 
 class BoiasAno(Resource):
     def get(self):
-        client = MongoClient("mongodb+srv://Bessa:vEiz8yoTtgOZzhyC@brwindy-adtf0.mongodb.net/test?retryWrites=true&w=majority")
+        client = MongoClient("mongodb+srv://Bessa:v git push --set-upstream BrWindy masterEiz8yoTtgOZzhyC@brwindy-adtf0.mongodb.net/test?retryWrites=true&w=majority")
         db = client.Brwindy
         data = db.Posts2.find({}, {'Year': 1})
         blist = []
