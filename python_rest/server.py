@@ -22,7 +22,7 @@ class Boia_id(Resource):
     def get(self, boiaNome):
         client = MongoClient("mongodb+srv://Bessa:vEiz8yoTtgOZzhyC@brwindy-adtf0.mongodb.net/test?retryWrites=true&w=majority")    
         db=client.Brwindy
-        data = db.Posts2.find({'Name':boiaNome}) 
+        data = db.PostsTest.find({'Name':boiaNome}) 
         return jsonify(dumps(data))
 
 #Retorna todas as boias /boias
@@ -30,7 +30,7 @@ class Boias(Resource):
     def get(self):
         client = MongoClient("mongodb+srv://Bessa:vEiz8yoTtgOZzhyC@brwindy-adtf0.mongodb.net/test?retryWrites=true&w=majority")    
         db=client.Brwindy
-        data = db.Posts2.find() 
+        data = db.PostsTest.find() 
         blist = []
         for b in data:
             blist.append(dumps(b))
@@ -44,7 +44,7 @@ class BoiasNome(Resource):
     def get(self):
         client = MongoClient("mongodb+srv://Bessa:vEiz8yoTtgOZzhyC@brwindy-adtf0.mongodb.net/test?retryWrites=true&w=majority")    
         db=client.Brwindy
-        data = db.Posts2.find({},{'Name':1}) 
+        data = db.PostsTest.find({},{'Name':1}) 
         blist = []
         for b in data:
             blist.append((b['Name']))
