@@ -34,7 +34,7 @@ class Boias(Resource):
         blist = []
         for b in data:
             blist.append(dumps(b))
-        #return jsonify(data)
+      
         return jsonify(blist)
 
 
@@ -48,10 +48,50 @@ class BoiasNome(Resource):
         blist = []
         for b in data:
             blist.append((b['Name']))
-        #return jsonify(data)
+     
         return jsonify(blist)
 
 
+
+class BoiasAnos(Resource):
+    def get(self):
+        client = MongoClient("mongodb+srv://Bessa:vEiz8yoTtgOZzhyC@brwindy-adtf0.mongodb.net/test?retryWrites=true&w=majority")    
+        db=client.Brwindy
+        data = db.PostsTest.distinct('Data.Dado.Date.Year')#gets the unique values of year
+        print(data)
+        return jsonify(data)
+      
+
+class BoiasCat(Resource):
+    def get(self):
+        return jsonify(  ['# Epoca',
+        'Date.Year',
+        'Date.Month',
+        'Date.Day', 
+        'Date.Hour',
+        'Date.Minute',
+        'Location.Lat',
+        'Location.Lon',
+        'Wspd',
+        'Wspdflag',
+        'Wdir',
+        'Gust',
+        'Atmp',
+        'Pres',
+        'Dewp',
+        'Humi',
+        'Arad',
+        'Wtmp',
+        'Wvht',
+        'Wmax',
+        'Dpd',
+        'Mwd',
+        'Spred'])
+
+
+
+api.add_resource(BoiasCat, '/boiasCat') 
+api.add_resource(BoiasAnos, '/boiasAno') 
 api.add_resource(Boia_id, '/boia/<boiaNome>')
 api.add_resource(Boias, '/boias')
 api.add_resource(BoiasNome, '/boiasNomes')
