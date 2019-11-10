@@ -838,16 +838,21 @@
                                         <!-- <h5 class="card-title">Special Title Treatment</h5>
                                         With supporting text below as a natural lead-in to additional content.
                                         <button class="btn btn-warning">Go somewhere</button> -->
-                                        <input placeholder="Input to filter" type="text" class="mb-2 form-control">
-                                        <select class="mb-2 form-control">
+                                        <select id="Eixo_X" placeholder="Eixo X" type="text" class="mb-2 form-control">
+                                            <option selected disabled>Eixo X</option>
+                                            
+                                        </select>
+                                        <select id="Eixo_Y" placeholder="Eixo Y" type="text" class="mb-2 form-control">
+                                            <option selected disabled>Eixo Y</option>
+                                            
+                                        </select>
+                                        <select id="select_ano" class="mb-2 form-control">
                                             <option selected disabled>Ano</option>
-                                            <option>2015</option>
-                                            <option>2016</option>
-                                            <option>2017</option>
+
                                         </select>
                                         <div class="position-relative form-group">
                                             <label for="exampleCustomMutlipleSelect" class="">Bóias</label>
-                                            <select id="boia_multi_select" multiple="" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="custom-select">
+                                            <select id="boia_multi_select" multiple="multiple" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="custom-select">
                                             
                                             </select>
                                         </div>
@@ -1073,11 +1078,11 @@
 
     <script>
         var lineChartData = {
-        labels: ["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6", "Data 7", "Data 7", "Data 7", "Data 7", "Data 5", "Data 2", "Data 4", "Data 1", "Data 7"],
+        labels: [],//["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6", "Data 7", "Data 7", "Data 7", "Data 7", "Data 5", "Data 2", "Data 4", "Data 1", "Data 7"],
         datasets: [
             {
                 label: "BOIA RN",
-                data: [20, 90, 140, 25, 53, 67, 47, 98, 30, 80, 20, 40, 10, 60],
+                data: [],//[20, 90, 140, 25, 53, 67, 47, 98, 30, 80, 20, 40, 10, 60],
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: "rgba(225,0,0,0.4)",
@@ -1099,7 +1104,7 @@
             },
                 {
                     label: "BOIA RS",
-                    data: [29, 99, 149, 29, 59, 69, 49, 99, 39, 89, 29, 49, 19, 69],
+                    data: [],//[29, 99, 149, 29, 59, 69, 49, 99, 39, 89, 29, 49, 19, 69],
                     fill: false,
                     lineTension: 0.1,
                     backgroundColor: "rgba(225,0,0,0.4)",
@@ -1121,7 +1126,7 @@
                 },
                 {
                 label: "BOIA PE",
-                data: [159, 266, 268, 275, 168, 268, 81, 255, 182, 93, 61, 232, 84, 204],
+                data: [],//[159, 266, 268, 275, 168, 268, 81, 255, 182, 93, 61, 232, 84, 204],
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: "rgba(225,0,0,0.4)",
@@ -1143,7 +1148,7 @@
             },
             {
                 label: "BOIA CE",
-                data: [49, 295, 139, 209, 28, 237, 53, 225, 275, 11, 106, 109, 277, 37],
+                data: [],//[49, 295, 139, 209, 28, 237, 53, 225, 275, 11, 106, 109, 277, 37],
                 fill: false,
                 lineTension: 0.1,
                 backgroundColor: "rgba(225,0,0,0.4)",
@@ -1164,12 +1169,12 @@
                 spanGaps: true,
             }
             ],
-        
+
         };
         // these are some defaults you can use for customizing your charts
 
         var ctx1 = document.getElementById("chart1").getContext("2d");
-        var LineChartDemo = new Chart(ctx1, {
+        var LineChartDemo1 = new Chart(ctx1, {
         type: "line",
         data: lineChartData,
         options: {
@@ -1183,11 +1188,11 @@
                 }
             }
         }
-        
+
         });
 
         var ctx2 = document.getElementById("chart2").getContext("2d");
-        var LineChartDemo = new Chart(ctx2, {
+        var LineChartDemo2 = new Chart(ctx2, {
         type: "line",
         data: lineChartData,
         options: {
@@ -1201,7 +1206,7 @@
                 }
             }
         }
-       
+
         });
 
     </script>
@@ -1209,10 +1214,13 @@
         $(document).ready(function(){
             $.ajax({
                 type: "GET",
-                url: 'http://127.0.0.1:5002/BoiasAno',
+                url: 'http://127.0.0.1:5002/boiasAno',
                 success: function(response){
                     var res = response;
                     console.log(res);
+                    for(var i = 0; i < res.length; i++){
+                        $('#select_ano').append("<option>"+res[i]+"</option>")
+                    }
                 }
             });
         });
@@ -1226,13 +1234,64 @@
                     console.log(res.length);
                     $('#num_boias').text(res.length)
                     for(var i = 0; i < res.length; i++){
-                        $('#boia_multi_select').append("<option>"+res[i]+"</option>")
-                        $('#select_cor_boia').append("<option>"+res[i]+"</option>")
+                        $('#boia_multi_select').append("<option value="+res[i]+">"+res[i].toUpperCase()+"</option>")
+                        $('#select_cor_boia').append("<option value="+res[i]+">"+res[i].toUpperCase()+"</option>")
                     }
                 },
             })
         });
 
+        $(document).ready(function(){
+            $.ajax({
+                type: "GET",
+                url: 'http://127.0.0.1:5002/boiasCat',
+                success: function(response){
+                    var res = response;
+                    console.log(res.length);
+                    for(var i = 0; i < res.length; i++){
+                        $('#Eixo_X').append("<option>"+res[i].toUpperCase()+"</option>")
+                        $('#Eixo_Y').append("<option>"+res[i].toUpperCase()+"</option>")
+                    }
+                }
+            })
+        })
+
+        $('#boia_multi_select').click(function(){
+            var boiasSelecionadas = $('#boia_multi_select').val();
+            //LineChartDemo1.clear();
+            for(var i = 0; i < boiasSelecionadas.length; i++){
+                //console.log(boiasSelecionadas[i]),
+                $.ajax({
+                    type: "GET",
+                    url: 'http://127.0.0.1:5002/boia/'+boiasSelecionadas[i],
+                    success: function(response){
+                        console.log(response);
+
+                        //addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
+                    },
+                    error: function(response){
+                        //console.log(response)
+                    }
+                })
+            }
+        });
+
+
+        function addData(chart, label, data) {
+            chart.data.labels.push(label);
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(data);
+            });
+            chart.update();
+        }
+
+        function removeData(chart) {
+            chart.data.labels.pop();
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.pop();
+            });
+            chart.update();
+        }
     </script>
 
 </html>
