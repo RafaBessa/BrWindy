@@ -1258,7 +1258,7 @@
 
         $('#boia_multi_select').click(function(){
             var boiasSelecionadas = $('#boia_multi_select').val();
-            //LineChartDemo1.clear();
+            LineChartDemo1.clear();
             for(var i = 0; i < boiasSelecionadas.length; i++){
                 //console.log(boiasSelecionadas[i]),
                 $.ajax({
@@ -1267,7 +1267,7 @@
                     success: function(response){
                         console.log(response);
 
-                        //addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
+                        addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
                     },
                     error: function(response){
                         //console.log(response)

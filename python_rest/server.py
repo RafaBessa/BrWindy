@@ -1,20 +1,17 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 #from sqlalchemy import create_engine
-from json import dumps
+#from json import dumps
 from flask_jsonpify import jsonify
 from pymongo import MongoClient
-#db_connect = create_engine('sqlite:///chinook.db')
+from bson.json_util import dumps
+import BuilderQuery as bq
+
 app = Flask(__name__)
 api = Api(app)
-from bson.json_util import dumps
-boias = [{"id":"001","Nome":"aaa","Pontos":[(0,1),(2,1)] },{"id":"002","Nome":"bbb","Pontos":[(0,1),(2,1)]} ]
 
-def FirstOrDefault(sequence, id):
-    for s in sequence:
-        if s["id"] == id:
-            return s
-    return None
+
+
 
 
 #Retorna o dicionario de uma boia especifica recebendo o nome dela endpoint: /boia/nome
@@ -89,7 +86,22 @@ class BoiasCat(Resource):
         'Spred'])
 
 
+class Boiasquery(Resource):
+    def get(self,Nome,Ano,X,Y):
+        valores = {
+                'Nome' : Nome,
+                'Ano' : Ano,
+                'eixoX' : X,
+                'eixoY' : Y
+                }           
+        
+        director = bq.Director()
+        builder = bq.ConcreteBuilder1()
+        director.builder = builder
+        
+        return director.build_full_featured_query(valores)
 
+api.add_resource(Boiasquery, '/boiasQuery/<Nome>/<Ano>/<X>/<Y>') 
 api.add_resource(BoiasCat, '/boiasCat') 
 api.add_resource(BoiasAnos, '/boiasAno') 
 api.add_resource(Boia_id, '/boia/<boiaNome>')
