@@ -203,9 +203,15 @@ class Product1():
         data = db.PostsTest.find({
             "Name": str(self.Nome) ,
             "Data.Dado.Date.Year": str(self.Ano),
-         }
-        ,
-        {'Name':1,'Data.Dado.Date.Year':1, eixoX:1, eixoY:1}) 
+         },
+            {
+                'Name':1,
+                'Data.Dado.Date.Year':1,
+                self.eixoX:1,
+                self.eixoY:1
+            }
+        )
+
         print(data)
         #print(dumps(data))
         

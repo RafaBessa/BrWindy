@@ -1258,6 +1258,7 @@
 
         $('#boia_multi_select').click(function(){
             var boiasSelecionadas = $('#boia_multi_select').val();
+            
             LineChartDemo1.clear();
             for(var i = 0; i < boiasSelecionadas.length; i++){
                 //console.log(boiasSelecionadas[i]),
@@ -1265,9 +1266,9 @@
                     type: "GET",
                     url: 'http://127.0.0.1:5002/boia/'+boiasSelecionadas[i],
                     success: function(response){
-                        console.log(response);
-
-                        addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
+                        //console.log(response);
+                        boiasQuery(boiasSelecionadas[i], $('#select_ano option:selected').val(),$('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val());
+                        //addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
                     },
                     error: function(response){
                         //console.log(response)
@@ -1276,8 +1277,25 @@
             }
         });
 
+        function boiasQuery(nome, ano, eixoX, eixoY){
+            var boiasSelecionadas = $('#boia_multi_select').val();
+            for(var i = 0; i < boiasSelecionadas.length; i++){
+                $.ajax({
+                    type: "GET",
+                    url: 'http://127.0.0.1:5002/boiasQuery/'+boiasSelecionadas[i]+'/'+ano+'/'+eixoX+'/'+eixoY,
+                    success:function(response){
+                        //console.log(response);
+                        var arr_from_json = JSON.parse(response);
+                        console.log(arr_from_json[0].Name);
+                        console.log(arr_from_json[0].Data);
+                        addData(LineChartDemo1, arr_from_json[0].Name, arr_from_json[0].Data[0])
+                    }
+                })
+            }
+        }
 
         function addData(chart, label, data) {
+            
             chart.data.labels.push(label);
             chart.data.datasets.forEach((dataset) => {
                 dataset.data.push(data);
