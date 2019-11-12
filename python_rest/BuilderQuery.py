@@ -198,8 +198,8 @@ class Product1():
         #      })
         # 
         print(('Data.Dado.' + str(self.eixoX)))
-        eixoX = 'Data.Dado.' + str(self.eixoX)
-        eixoY = 'Data.Dado.' + str(self.eixoY)
+        self.eixoX = 'Data.Dado.' + str(self.eixoX)
+        self.eixoY = 'Data.Dado.' + str(self.eixoY)
         data = db.PostsTest.find({
             "Name": str(self.Nome) ,
             "Data.Dado.Date.Year": str(self.Ano),
