@@ -1249,8 +1249,8 @@
                     var res = response;
                     console.log(res.length);
                     for(var i = 0; i < res.length; i++){
-                        $('#Eixo_X').append("<option>"+res[i].toUpperCase()+"</option>")
-                        $('#Eixo_Y').append("<option>"+res[i].toUpperCase()+"</option>")
+                        $('#Eixo_X').append("<option value="+res[i]+">"+res[i].toUpperCase()+"</option>")
+                        $('#Eixo_Y').append("<option value="+res[i]+">"+res[i].toUpperCase()+"</option>")
                     }
                 }
             })
@@ -1277,6 +1277,7 @@
             }
         });
 
+        var abc = [];
         function boiasQuery(nome, ano, eixoX, eixoY){
             var boiasSelecionadas = $('#boia_multi_select').val();
             for(var i = 0; i < boiasSelecionadas.length; i++){
@@ -1284,11 +1285,17 @@
                     type: "GET",
                     url: 'http://127.0.0.1:5002/boiasQuery/'+boiasSelecionadas[i]+'/'+ano+'/'+eixoX+'/'+eixoY,
                     success:function(response){
-                        //console.log(response);
+                            //console.log(response);
                         var arr_from_json = JSON.parse(response);
                         console.log(arr_from_json[0].Name);
-                        console.log(arr_from_json[0].Data);
-                        addData(LineChartDemo1, arr_from_json[0].Name, arr_from_json[0].Data[0])
+                        var total = arr_from_json[0].Data.length
+                        console.log(total);
+                        for(var j=0; j < total; j++){
+                            console.log(arr_from_json[0].Data[j].Dado.Date["Month"]);//parseFloat(abc[0].Data[1].Dado['Pres'].replace(/,/g, '.')) 
+                            addData(LineChartDemo1, arr_from_json[0].Data[j].Dado.Date["Month"], arr_from_json[0].Data[j].Dado[eixoY])
+                        }
+                        abc = arr_from_json;
+                        
                     }
                 })
             }
