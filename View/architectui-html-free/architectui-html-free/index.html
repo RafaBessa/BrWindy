@@ -1290,7 +1290,7 @@
                         console.log(arr_from_json[0].Name);
                         var total = arr_from_json[0].Data.length
                         console.log(total);
-                        for(var j=0; j < total; j++){
+                        for(var j=0; j < 15; j++){
                             console.log(arr_from_json[0].Data[j].Dado.Date["Month"]);//parseFloat(abc[0].Data[1].Dado['Pres'].replace(/,/g, '.'))   
                             addData(LineChartDemo1, arr_from_json[0].Data[j].Dado.Date["Month"], arr_from_json[0].Data[j].Dado[eixoY])
                         }
