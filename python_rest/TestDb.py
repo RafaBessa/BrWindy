@@ -9,6 +9,7 @@ from pprint import pprint
 from bson.json_util import dumps
 
 
+
 client = MongoClient("mongodb+srv://Bessa:vEiz8yoTtgOZzhyC@brwindy-adtf0.mongodb.net/test?retryWrites=true&w=majority")    
 db=client.Brwindy
 #data = db.PostsTest.find({'Data.Dado.Date.Year': '2016'},{'Data.Dado.Date.Year':1} )

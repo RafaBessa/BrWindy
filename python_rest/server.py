@@ -101,6 +101,28 @@ class Boiasquery(Resource):
         
         return director.build_full_featured_query(valores)
 
+
+class BoiasqueryMinMax(Resource):
+    def get(self,Nome,Ano,X,Y,minX,maxX,minY,maxY):
+        valores = {
+                'Nome' : Nome,
+                'Ano' : Ano,
+                'eixoX' : X,
+                'eixoY' : Y,
+                'minX' : minX,
+                'minY' : minY,
+                'maxX' : maxX,
+                'maxY' : maxY,
+                }           
+                
+        director = bq.DirectorMaxmin()
+        builder = bq.ConcreteBuilderMaxMin()
+    
+        director.builder = builder
+        
+        return director.build_full_featured_query(valores)
+
+api.add_resource(BoiasqueryMinMax, '/boiasQueryMinMax/<Nome>/<Ano>/<X>/<Y>/<minX>/<maxX>/<minY>/<maxY>') 
 api.add_resource(Boiasquery, '/boiasQuery/<Nome>/<Ano>/<X>/<Y>') 
 api.add_resource(BoiasCat, '/boiasCat') 
 api.add_resource(BoiasAnos, '/boiasAno') 

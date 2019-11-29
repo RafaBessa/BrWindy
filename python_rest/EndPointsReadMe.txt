@@ -16,6 +16,7 @@
 -- Retorna lista com atributos especificos do objeto
 'boia/<boiaNome>/<Cat>'
 
--- Retorna valores apartir de operacao (maior, menor, igual)
-'boia/<boiaNome>/<Cat>/<operacao>/<valor>'
+-- Retorna valores dentro de um range (maior, menor, igual)
+'/boiasQuery/<Nome>/<Ano>/<X>/<Y>/<minX>/<maxX>/<minY>/<maxY>'
+
 
