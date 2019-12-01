@@ -840,23 +840,43 @@
                                         <button class="btn btn-warning">Go somewhere</button> -->
                                         <select id="Eixo_X" placeholder="Eixo X" type="text" class="mb-2 form-control">
                                             <option selected disabled>Eixo X</option>
-                                            
                                         </select>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <input id="min_x" placeholder="Min X" type="text" class="mb-2 form-control col-md-6"/>
+                                                <input id="max_x" placeholder="Max X" type="text" class="mb-2 form-control col-md-6"/>
+                                            </div>
+                                        </div>
                                         <select id="Eixo_Y" placeholder="Eixo Y" type="text" class="mb-2 form-control">
                                             <option selected disabled>Eixo Y</option>
                                             
                                         </select>
+                                        <div class="col-md-12">
+                                                <div class="row">
+                                                    <input id="min_y" placeholder="Min Y" type="text" class="mb-2 form-control col-md-6"/>
+                                                    <input id="max_y" placeholder="Max Y" type="text" class="mb-2 form-control col-md-6"/>
+                                                </div>
+                                            </div>
                                         <select id="select_ano" class="mb-2 form-control">
                                             <option selected disabled>Ano</option>
-
                                         </select>
+
+                                        <select id="select_operator" class="mb-2 form-control">
+                                            <option selected disabled>Operações</option>
+                                            <option value="avg">Média</option>
+                                            <option value="max">Máximo</option>
+                                            <option value="min">Mínimo</option>
+                                            <option value="all">Todos</option>
+                                        </select>
+
+
                                         <div class="position-relative form-group">
                                             <label for="exampleCustomMutlipleSelect" class="">Bóias</label>
                                             <select id="boia_multi_select" multiple="multiple" type="select" id="exampleCustomMutlipleSelect" name="customSelect" class="custom-select">
                                             
                                             </select>
                                         </div>
-                                        <div class="row col-md-12">
+                                        <!-- <div class="row col-md-12">
                                             <div class="float-left">
                                                 Dados exibidos [Set_Value]/[Max_Value]
                                             </div>
@@ -864,11 +884,11 @@
                                                 <i class="pe-7s-less"> </i>
                                                 <i class="pe-7s-plus"> </i>
                                             </div>
-                                        </div>
+                                        </div> 
                                         <div class="mb-3 progress bg-premium-dark">
                                             <div class="progress-bar progress-bar-striped text-white" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="15" style="background-color: #f7b924; width: 20%;">                                                
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <div class="row">
                                             <div class="col-md-12">
                                             Executar DFA para: <br/>
@@ -886,16 +906,16 @@
                                         <select id="select_cor_boia" class="mb-2 form-control">
                                             <option selected disabled>Bóia</option>
                                         </select>
-                                        <div class="swatch-holder swatch-holder-lg bg-primary" id="TooltipC-0"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-secondary" id="TooltipC-1"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-success" id="TooltipC-2"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-info" id="TooltipC-3"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-warning" id="TooltipC-4"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-danger" id="TooltipC-5"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-focus" id="TooltipC-6"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-alternate" id="TooltipC-7"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-light" id="TooltipC-8"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-dark" id="TooltipC-9"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-primary" id="TooltipC-0" onclick="alterColorFirstChart('#3f6ad8')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-secondary" id="TooltipC-1" onclick="alterColorFirstChart('#6c757d')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-success" id="TooltipC-2" onclick="alterColorFirstChart('##3ac47d')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-info" id="TooltipC-3" onclick="alterColorFirstChart('#16aaff')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-warning" id="TooltipC-4" onclick="alterColorFirstChart('#f7b924')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-danger" id="TooltipC-5" onclick="alterColorFirstChart('#d92550')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-focus" id="TooltipC-6" onclick="alterColorFirstChart('#444054')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-alternate" id="TooltipC-7" onclick="alterColorFirstChart('#794c8a')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-light" id="TooltipC-8" onclick="alterColorFirstChart('#eee')"></div>
+                                        <div class="swatch-holder swatch-holder-lg bg-dark" id="TooltipC-9" onclick="alterColorFirstChart('#343a40')"></div>
                                     </div>
                                 </div>
                             </div>
@@ -1081,7 +1101,7 @@
         labels: [],//["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6", "Data 7", "Data 7", "Data 7", "Data 7", "Data 5", "Data 2", "Data 4", "Data 1", "Data 7"],
         datasets: [
             {
-                label: "BOIA RN",
+                label: "recife",
                 data: [],//[20, 90, 140, 25, 53, 67, 47, 98, 30, 80, 20, 40, 10, 60],
                 fill: false,
                 lineTension: 0.1,
@@ -1259,7 +1279,7 @@
         $('#boia_multi_select').click(function(){
             var boiasSelecionadas = $('#boia_multi_select').val();
             
-            LineChartDemo1.clear();
+            LineChartDemo1.reset();
             for(var i = 0; i < boiasSelecionadas.length; i++){
                 //console.log(boiasSelecionadas[i]),
                 $.ajax({
@@ -1267,7 +1287,15 @@
                     url: 'http://127.0.0.1:5002/boia/'+boiasSelecionadas[i],
                     success: function(response){
                         //console.log(response);
-                        boiasQuery(boiasSelecionadas[i], $('#select_ano option:selected').val(),$('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val());
+                        boiasQuery(boiasSelecionadas[i], 
+                                    $('#select_ano option:selected').val(),
+                                    $('#Eixo_X option:selected').val(), 
+                                    $('#Eixo_Y option:selected').val(),
+                                    $('#min_x').val(),
+                                    $('#max_x').val(),
+                                    $('#min_y').val(),
+                                    $('#max_y').val()
+                                    );
                         //addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
                     },
                     error: function(response){
@@ -1278,29 +1306,53 @@
         });
 
         var abc = [];
-        function boiasQuery(nome, ano, eixoX, eixoY){
+        function boiasQuery(nome, ano, eixoX, eixoY, minX, maxX, minY, maxY){
             var boiasSelecionadas = $('#boia_multi_select').val();
             for(var i = 0; i < boiasSelecionadas.length; i++){
                 $.ajax({
                     type: "GET",
-                    url: 'http://127.0.0.1:5002/boiasQuery/'+boiasSelecionadas[i]+'/'+ano+'/'+eixoX+'/'+eixoY,
+                    url: 'http://127.0.0.1:5002/boiasQueryMinMax/'+boiasSelecionadas[i]+'/'+ano+'/'+eixoX+'/'+eixoY+'/'+minX+'/'+maxX+'/'+minY+'/'+maxY,
                     success:function(response){
-                            //console.log(response);
-                        var arr_from_json = JSON.parse(response);
-                        console.log(arr_from_json[0].Name);
-                        var total = arr_from_json[0].Data.length
-                        console.log(total);
-                        for(var j=0; j < 15; j++){
-                            console.log(arr_from_json[0].Data[j].Dado.Date["Month"]);//parseFloat(abc[0].Data[1].Dado['Pres'].replace(/,/g, '.'))   
-                            addData(LineChartDemo1, arr_from_json[0].Data[j].Dado.Date["Month"], arr_from_json[0].Data[j].Dado[eixoY])
-                        }
+                        //console.log(response);
+                        var arr_from_json = response;
                         abc = arr_from_json;
+                        // console.log(boiasSelecionadas[i]);
+                        var total = arr_from_json.length
+                        // console.log(total);
+
+                        removeData(LineChartDemo1);
+
+                        for(var j=0; j < total; j++){
+                            if($('#Eixo_X :selected').val().includes($('#Eixo_X :selected').val().split('.')[0])){
+                                //console.log(arr_from_json[0].Data[j].Dado.Date[$('#Eixo_X :selected').val().replace('Date.','')]);//parseFloat(abc[0].Data[1].Dado['Pres'].replace(/,/g, '.'))   
+                                addData(LineChartDemo1, arr_from_json[j].Dado.Date[$('#Eixo_X :selected').val().split('.')[1]], arr_from_json[j].Dado[eixoY])
+                            }else{
+                                addData(LineChartDemo1, arr_from_json[j].Dado[$('#Eixo_X :selected')], arr_from_json[j].Dado[eixoY])
+                            }
+                        }
+                        
                         
                     }
                 })
             }
         }
 
+        function alterColorFirstChart(color){
+            var selectedBoia = $('#select_cor_boia :selected').val();
+            for(x=0; x< LineChartDemo1.data.datasets.length; x++){
+                if(selectedBoia == LineChartDemo1.data.datasets[x].label)
+                LineChartDemo1.data.datasets[x].borderColor = color;
+            }
+            LineChartDemo1.update();    
+        }
+
+        function alterColorSecChart(color){
+            var selectedBoia = $('#select_cor_boia_sec :selected').val();
+            for(x=0; x< LineChartDemo2.data.datasets.length; x++){
+                LineChartDemo2.data.datasets[x].borderColor = color;
+            }
+            LineChartDemo2.update();    
+        }
         function addData(chart, label, data) {
             
             chart.data.labels.push(label);

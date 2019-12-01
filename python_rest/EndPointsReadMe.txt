@@ -20,3 +20,4 @@
 '/boiasQuery/<Nome>/<Ano>/<X>/<Y>/<minX>/<maxX>/<minY>/<maxY>'
 
 
+
