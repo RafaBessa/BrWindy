@@ -1,0 +1,4 @@
+comandos arvore de regressao
+a <-rpart(Wspd~.,data=d,method = "anova")
+plot(a,uniform=T)
+text(a,use.n=T)
