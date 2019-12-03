@@ -1055,28 +1055,7 @@
         var lineChartData = {
         labels: [],//["Data 1", "Data 2", "Data 3", "Data 4", "Data 5", "Data 6", "Data 7", "Data 7", "Data 7", "Data 7", "Data 5", "Data 2", "Data 4", "Data 1", "Data 7"],
         datasets: [
-            {
-                label: "recife",
-                data: [],//[20, 90, 140, 25, 53, 67, 47, 98, 30, 80, 20, 40, 10, 60],
-                fill: false,
-                lineTension: 0.1,
-                backgroundColor: "rgba(225,0,0,0.4)",
-                borderColor: "red", // The main line color
-                borderCapStyle: 'square',
-                borderDash: [], // try [5, 15] for instance
-                borderDashOffset: 0.0,
-                borderJoinStyle: 'miter',
-                pointBorderColor: "black",
-                pointBackgroundColor: "white",
-                pointBorderWidth: 1,
-                pointHoverRadius: 8,
-                pointHoverBackgroundColor: "yellow",
-                pointHoverBorderColor: "brown",
-                pointHoverBorderWidth: 2,
-                pointRadius: 4,
-                pointHitRadius: 10,
-                spanGaps: true,
-            }],
+            ],
 
         };
         // these are some defaults you can use for customizing your charts
@@ -1125,7 +1104,7 @@
                     url: 'http://127.0.0.1:5002/boiasAno',
                     success: function(response){
                         var res = response;
-                        console.log(res);
+                        //(res);
                         for(var i = 0; i < res.length; i++){
                             $('#select_ano').append("<option>"+res[i]+"</option>")
                         }
@@ -1139,7 +1118,7 @@
                     url: 'http://127.0.0.1:5002/boiasNomes',
                     success: function(response){
                         var res = response;
-                        console.log(res.length);
+                        //(res.length);
                         $('#num_boias').text(res.length)
                         for(var i = 0; i < res.length; i++){
                             $('#boia_multi_select').append("<option value="+res[i]+">"+res[i].toUpperCase()+"</option>")
@@ -1148,14 +1127,14 @@
                     },
                 })
             });
-    
+
             $(document).ready(function(){
                 $.ajax({
                     type: "GET",
                     url: 'http://127.0.0.1:5002/boiasCat',
                     success: function(response){
                         var res = response;
-                        console.log(res.length);
+                        //(res.length);
                         for(var i = 0; i < res.length; i++){
                             $('#Eixo_X').append("<option value="+res[i]+">"+res[i].toUpperCase()+"</option>")
                             $('#Eixo_Y').append("<option value="+res[i]+">"+res[i].toUpperCase()+"</option>")
@@ -1164,71 +1143,102 @@
                 })
             })
     
-            $('#boia_multi_select').click(function(){
-                var boiasSelecionadas = $('#boia_multi_select').val();
+            // $('#boia_multi_select').change(function(){
+
+            //     var boiasSelecionadas = $('#boia_multi_select').val();
+            //    //document.write(boiasSelecionadas)
+             
                 
-                for(var i = 0; i < boiasSelecionadas.length; i++){
-                    //console.log(boiasSelecionadas[i]),
-                    $.ajax({
-                        type: "GET",
-                        url: 'http://127.0.0.1:5002/boia/'+boiasSelecionadas[i],
-                        success: function(response){
-                            //console.log(response);
-                            boiasQuery(boiasSelecionadas[i], 
-                                        $('#select_ano option:selected').val(),
-                                        $('#Eixo_X option:selected').val(), 
-                                        $('#Eixo_Y option:selected').val(),
-                                        $('#min_x').val(),
-                                        $('#max_x').val(),
-                                        $('#min_y').val(),
-                                        $('#max_y').val()
-                                        );
-                            //addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
-                        },
-                        error: function(response){
-                            //console.log(response)
-                        }
-                    })
-                }
-            });
+            //     for(var i = 0; i < boiasSelecionadas.length; i++){
+            //         ////(boiasSelecionadas[i]),
+            //         $.ajax({
+            //             type: "GET",
+            //             url: 'http://127.0.0.1:5002/boia/'+boiasSelecionadas[i],
+            //             success: function(response){
+            //                 ////(response);
+            //                 boiasQuery(boiasSelecionadas[i], 
+            //                             $('#select_ano option:selected').val(),
+            //                             $('#Eixo_X option:selected').val(), 
+            //                             $('#Eixo_Y option:selected').val(),
+            //                             $('#min_x').val(),
+            //                             $('#max_x').val(),
+            //                             $('#min_y').val(),
+            //                             $('#max_y').val()
+            //                             );
+            //                 //addData(LineChartDemo1, $('#Eixo_X option:selected').val(), $('#Eixo_Y option:selected').val())
+            //             },
+            //             error: function(response){
+            //                 ////(response)
+            //             }
+            //         })
+            //     }
+            // });
     
             var abc = [];
-            function boiasQuery(nome, ano, eixoX, eixoY, minX, maxX, minY, maxY){
+            var nome = "";
+            $('#boia_multi_select').change(function boiasQuery(){
                 removeData(LineChartDemo1);
-                var boiasSelecionadas = $('#boia_multi_select').val();
+               
+                ano = $('#select_ano option:selected').val(),
+                eixoX =  $('#Eixo_X option:selected').val(), 
+                eixoY = $('#Eixo_Y option:selected').val(),
+                minX = $('#min_x').val(),
+                maxX = $('#max_x').val(),
+                minY = $('#min_y').val(),
+                maxY = $('#max_y').val()
+
+               var boiasSelecionadas = $('#boia_multi_select').val();
+               //(boiasSelecionadas.length);
                 for(var i = 0; i < boiasSelecionadas.length; i++){
+                    //(i);
+                    //(boiasSelecionadas[i]);
+                    nome = boiasSelecionadas[i];
                     $.ajax({
                         type: "GET",
                         url: 'http://127.0.0.1:5002/boiasQueryMinMax/'+boiasSelecionadas[i]+'/'+ano+'/'+eixoX+'/'+eixoY+'/'+minX+'/'+maxX+'/'+minY+'/'+maxY,
                         success:function(response){
-                            //console.log(response);
-                            var arr_from_json = response;
+                            //(response);
+                            var arr_from_json = response[1];
+                            var n = response[0];
+                            //(n + " ------- ESSE EH O NOME" );
                             abc = arr_from_json;
-                            console.log(nome);
                             var total = arr_from_json.length
-                            // console.log(total);
+                            // //(total);
+                            if(total==0){
+                                return;
+                            }
                             
+                            addnewDataset(LineChartDemo1,n)
+                            ////('0'+LineChartDemo1.data.datasets)
                             for(var j=0; j < total; j++){
                                 if($('#Eixo_X :selected').val().includes($('#Eixo_X :selected').val().split('.')[0])){
-                                    //console.log(arr_from_json[0].Data[j].Dado.Date[$('#Eixo_X :selected').val().replace('Date.','')]);//parseFloat(abc[0].Data[1].Dado['Pres'].replace(/,/g, '.'))   
-                                    addData(LineChartDemo1, arr_from_json[j].Dado.Date[$('#Eixo_X :selected').val().split('.')[1]], arr_from_json[j].Dado[eixoY], boiasSelecionadas[i])
+                                    ////(arr_from_json[0].Data[j].Dado.Date[$('#Eixo_X :selected').val().replace('Date.','')]);//parseFloat(abc[0].Data[1].Dado['Pres'].replace(/,/g, '.'))   
+                                    addData(LineChartDemo1, arr_from_json[j].Dado.Date[$('#Eixo_X :selected').val().split('.')[1]], arr_from_json[j].Dado[eixoY], n)
                                     
-                                    LineChartDemo1.data.datasets[0].label = $('#boia_multi_select').val()[0];
+                                   // LineChartDemo1.data.datasets[0].label = n;
                                     $('#ocr_card').append(
                                     "<div class=\"card-shadow-primary border mb-3 mr-2 card card-body border-primary \">"+
-                                        "<h5 class=\"card-title\">"+$('#boia_multi_select').val()[0]+"</h5>"+
+                                        "<h5 class=\"card-title\">"+n+"</h5>"+
                                         arr_from_json[j].Dado[eixoY]+
                                     "</div>"
                                 )
                                 }else{
-                                    addData(LineChartDemo1, arr_from_json[j].Dado[$('#Eixo_X :selected')], arr_from_json[j].Dado[eixoY], boiasSelecionadas[i])
+                                    addData(LineChartDemo1, arr_from_json[j].Dado[$('#Eixo_X :selected')], arr_from_json[j].Dado[eixoY], n)
+                                    
                                 }
                             }
                             
                         }
                     })
+                  
                 }
-            }
+                
+            
+            })
+
+             
+            
+ 
     
             function alterColorFirstChart(color){
                 var selectedBoia = $('#select_cor_boia :selected').val();
@@ -1246,40 +1256,81 @@
                 }
                 LineChartDemo2.update();    
             }
-            function addData(chart, label, data, nameBoia) {
-                
+            function  addData(chart, label, data, nameBoia) {
                 chart.data.labels.push(label);
+
                 chart.data.datasets.forEach((dataset) => {
-                    dataset.data.push(data);
-                });
-                chart.update();       
-            }
+                  //  //(dataset)
+                    ////(dataset.label + " - " + nameBoia )
+                    if(dataset.label == nameBoia){
+                       ////(dataset.label + " - " + nameBoia )
+                        dataset.data.push(data);
+                    }});
+                  chart.update();       
+                  }
     
             function removeData(chart) {
-                for(var x = 0; x < abc.length; x++){
-                    chart.data.labels.pop();
-                    chart.data.datasets.forEach((dataset) => {
-                    dataset.data.pop();
-                    dataset.label.pop();
-                });
-                chart.update();
+                // for(var x = 0; x < abc.length; x++){
+                //     chart.data.labels.pop();
+                //     chart.data.datasets.forEach((dataset) => {
+                //     dataset.data.pop();
+                //     dataset.label.pop();
+                // });
+                // chart.update();
+                // }
+               // $('#ocr_card').innerHTML = '';
+                const myNode = document.getElementById("ocr_card");
+                while (myNode.firstChild) {
+                     myNode.removeChild(myNode.firstChild);
                 }
+
+              chart.data.labels.splice(0, chart.data.labels.length);
+              chart.data.datasets.splice(0,chart.data.datasets.length );
+              chart.update();
             }
     
-            function addDataset(chart){
-                    var colorNames = Object.keys(window.chartColors);
-                   
-                    var colorName = colorNames[chart.data.datasets.length % colorNames.length];
-                    var newColor = chartColors[colorName];
-                    var newDataset = {
-                        label: 'Dataset ' + chart.data.datasets.length,
-                        backgroundColor: newColor,
-                        borderColor: newColor,
-                        data: [],
-                        fill: false
-                    };
-                    chart.update();		    
-            }
+            // function addDataset(chart){
+            //         var colorNames = Object.keys(window.chartColors);
+            //         var colorName = colorNames[chart.data.datasets.length % colorNames.length];
+            //         var newColor = chartColors[colorName];
+            //         var newDataset = {
+            //             label: 'Dataset ' + chart.data.datasets.length,
+            //             backgroundColor: newColor,
+            //             borderColor: newColor,
+            //             data: [],
+            //             fill: false
+            //         };
+            //         chart.update();		    
+            // }
+          
+                
+
+            function addnewDataset (chart,Nome){
+                var colorNames = Object.keys(window.chartColors);
+                var colorName = colorNames[chart.data.datasets.length % colorNames.length];
+                var newColor = chartColors[colorName];  
+                var string_copy = (' ' + Nome).slice(1);
+			var newDataset = {
+				label: string_copy,
+				backgroundColor: newColor,
+				borderColor: newColor,
+				data: [],
+				fill: false,
+                lineTension: 0.1,
+                borderCapStyle: 'square',
+                pointHoverBackgroundColor: "yellow",
+                pointHoverBorderColor: "brown",
+                pointHoverBorderWidth: 2,
+                pointRadius: 4,
+                pointHitRadius: 10,
+                spanGaps: true,
+                borderDashOffset: 0.0,
+			};
+          
+			chart.data.datasets.push(newDataset);
+			chart.update();
+          }
+
         </script>
 
 </html>

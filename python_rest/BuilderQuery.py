@@ -401,7 +401,7 @@ class productMaxMin(Product1):
         print(filteredData)
         #print(dumps(data))
         
-        return jsonify(filteredData)
+        return jsonify([str(self.Nome),filteredData])
 
 
 #diretor minmax 
