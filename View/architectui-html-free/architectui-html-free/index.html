@@ -22,49 +22,51 @@
     -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link href="./main.css" rel="stylesheet"></head>
+<link href="./custom.css    " rel="stylesheet"></head>
 <body>
     <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-        <div class="app-header header-shadow">
-            <div class="app-header__logo">
-                <div class="logo-src"></div>
+        <div class="app-header header-shadow" style="height: 75px;">
+            <div class="app-header__logo" >
+                <div class="custom_app_header"></div>
                 <div class="header__pane ml-auto">
-                    <div>
+                    <!-- <div>
                         <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
                             <span class="hamburger-box">
                                 <span class="hamburger-inner"></span>
                             </span>
                         </button>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="app-header__mobile-menu">
-                <div>
+                <!-- <div>
                     <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
                         <span class="hamburger-box">
                             <span class="hamburger-inner"></span>
                         </span>
                     </button>
-                </div>
+                </div> -->
             </div>
             <div class="app-header__menu">
-                <span>
+                <!-- <span>
                     <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
                         <span class="btn-icon-wrapper">
                             <i class="fa fa-ellipsis-v fa-w-6"></i>
                         </span>
                     </button>
-                </span>
+                </span> -->
             </div>    <div class="app-header__content">
                 <div class="app-header-left">
-                    <div class="search-wrapper">
+                    <!-- <div class="search-wrapper">
                         <div class="input-holder">
                             <input type="text" class="search-input" placeholder="Type to search">
                             <button class="search-icon"><span></span></button>
                         </div>
                         <button class="close"></button>
-                    </div>
+                    </div> -->
                     <ul class="header-menu nav">
-                        <li class="nav-item">
+                          
+                        <!-- <li class="nav-item">
                             <a href="javascript:void(0);" class="nav-link">
                                 <i class="nav-link-icon fa fa-database"> </i>
                                 Statistics
@@ -81,8 +83,12 @@
                                 <i class="nav-link-icon fa fa-cog"></i>
                                 Settings
                             </a>
-                        </li>
-                    </ul>        </div>
+                        </li> -->
+                    </ul>        
+                 </div>
+
+
+                    
                 <!-- <div class="app-header-right">
                     <div class="header-btn-lg pr-0">
                         <div class="widget-content p-0">
@@ -418,16 +424,16 @@
                                     </div>
                                 </div>
                                 <div class="page-title-actions">
-                                    <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
+                                    <!-- <button type="button" data-toggle="tooltip" title="Example Tooltip" data-placement="bottom" class="btn-shadow mr-3 btn btn-dark">
                                         <i class="fa fa-star"></i>
-                                    </button>
+                                    </button> -->
                                     <div class="d-inline-block dropdown">
-                                        <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
+                                        <!-- <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn-shadow dropdown-toggle btn btn-info">
                                             <span class="btn-icon-wrapper pr-2 opacity-7">
                                                 <i class="fa fa-business-time fa-w-20"></i>
                                             </span>
                                             Buttons
-                                        </button>
+                                        </button> -->
                                         <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
                                             <ul class="nav flex-column">
                                                 <li class="nav-item">
@@ -604,35 +610,36 @@
                                             <div class="progress-bar progress-bar-striped text-white" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="15" style="background-color: #f7b924; width: 20%;">                                                
                                             </div>
                                         </div>-->
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div class="col-md-12">
                                             Executar DFA para: <br/>
                                             <button class="mb-2 mr-2 btn btn-success">Todos</button>
                                             <button class="mb-2 mr-2 btn btn-warning">Apenas Selecionados</button>
-                                        </div>
+                                        </div> -->
                                         </div>
                                         
                                     </div>
                                     <!-- <div class="card-footer">Footer</div> -->
-                                </div>
-                                <div class="main-card mb-3 card">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Cor da linha do gráfico</h5>
-                                        <select id="select_cor_boia" class="mb-2 form-control">
-                                            <option selected disabled>Bóia</option>
-                                        </select>
-                                        <div class="swatch-holder swatch-holder-lg bg-primary" id="TooltipC-0" onclick="alterColorFirstChart('#3f6ad8')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-secondary" id="TooltipC-1" onclick="alterColorFirstChart('#6c757d')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-success" id="TooltipC-2" onclick="alterColorFirstChart('#3ac47d')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-info" id="TooltipC-3" onclick="alterColorFirstChart('#16aaff')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-warning" id="TooltipC-4" onclick="alterColorFirstChart('#f7b924')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-danger" id="TooltipC-5" onclick="alterColorFirstChart('#d92550')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-focus" id="TooltipC-6" onclick="alterColorFirstChart('#444054')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-alternate" id="TooltipC-7" onclick="alterColorFirstChart('#794c8a')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-light" id="TooltipC-8" onclick="alterColorFirstChart('#eee')"></div>
-                                        <div class="swatch-holder swatch-holder-lg bg-dark" id="TooltipC-9" onclick="alterColorFirstChart('#343a40')"></div>
+                                    <div class="main-card mb-3 card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Cor da linha do gráfico</h5>
+                                            <select id="select_cor_boia" class="mb-2 form-control">
+                                                <option selected disabled>Bóia</option>
+                                            </select>
+                                            <div class="swatch-holder swatch-holder-lg bg-primary" id="TooltipC-0" onclick="alterColorFirstChart('#3f6ad8')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-secondary" id="TooltipC-1" onclick="alterColorFirstChart('#6c757d')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-success" id="TooltipC-2" onclick="alterColorFirstChart('#3ac47d')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-info" id="TooltipC-3" onclick="alterColorFirstChart('#16aaff')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-warning" id="TooltipC-4" onclick="alterColorFirstChart('#f7b924')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-danger" id="TooltipC-5" onclick="alterColorFirstChart('#d92550')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-focus" id="TooltipC-6" onclick="alterColorFirstChart('#444054')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-alternate" id="TooltipC-7" onclick="alterColorFirstChart('#794c8a')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-light" id="TooltipC-8" onclick="alterColorFirstChart('#eee')"></div>
+                                            <div class="swatch-holder swatch-holder-lg bg-dark" id="TooltipC-9" onclick="alterColorFirstChart('#343a40')"></div>
+                                        </div>
                                     </div>
                                 </div>
+                                
                             </div>
                         </div>
 
